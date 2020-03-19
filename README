@@ -1,0 +1,85 @@
+	README TEMA1 SD - CORECTIE, ELIMINAREA EXCEPTIILOR SI COMPLETAREA DATELOR SECVENTIALE
+
+	Programul contine rezolvarea celor 4 cerinte astfel:
+
+	Am declarat la inceput o lista dublu inlantuita ce imi va fi de folos pentru prelucrarea datelor. Lista contine cele doua campuri in care se retin valori: timestamp-ul de tip
+	intreg, respectiv datele de tip double, precum si doi pointeri de tip struct List care vor pointa catre urmatorul, respectiv catre elementul precedent elementului curent.
+
+	Functia initList are rolul de a defini un nou nod in lista. Pentru inceput se aloca memorie pentru un nou nod si i se atribuie cele doua valori date ca parametrii in antetutul
+	functiei. Campurile prev si next vor pointa ambele spre NULL, acestea fiind modificate in functie de necesitati.Functia returneaza noul element initializat.
+	Functia printList este o functie recursiva ce printeaza elementele listei atat timp cat aceasta este nenula. 
+
+	Functia addLast primeste drept parametrii lista initiala si cele doua valori de tip intreg si double care vor fi atribuite noului nod adaugat. Aceasta adauga un element la
+	sfarsitul listei curente. Daca lista este nula, atunci aceasta va contine un singur element dupa adaugare, de aceea am folsit functia initList de initializare a unui nod. In 
+	cazul in care lista nu este nula, print-o structura repetitiva while merg pana la sfarsitul listei unde va fi adaugat noul element. Ma folosesc de functia definita anterior,
+	initList, pentru a aloca memorie unui nou nod. Campul next al ultimului element al listei va pointa catre noul element adaugat, iar campul prev al elementului adaugat va pointa 
+	catre fostul ultim element al listei. Functia returneaza capul de lista cu noul element adaugat.
+
+	Functia deleteList asigura stergerea completa a unei liste. Se parcurg in ordine toate elementele listei si se copiaza nodul curent. Se elibereaza memoria pentru nodul curent 
+	prin functia free si se trece la urmatorul element al listei.
+
+	Functia sort sorteaza elementele unei liste in functie de campul data. Se folosesc doua liste auxiliare pentru parcurgerea listei. Pornesc de la primul element al listei pana 
+	la penultimul element. q retine intotdeauna capul listei incepand cu urmatorul element. Astfel se compara fiecare element din lista cu toate elementele care se afla dupa 
+	elementul curent si daca acestea nu indeplinesc conditia, atunci se interschimba. Functia returneaza lista sortata crescator dupa campul data.
+
+	Functia find_integer este utilizata la bonus pentru a defini primul interval pentru prelucrarea valorilor. Cu alte cuvinte, functia gaseste cel mai mare numar mai mic decat 
+	numarul dat ca parametru. Intrucat intervalele vor fi de lungime delta, iau ca reper valoarea 0. Daca numarul este negativ, atunci se fac scaderi succesive pana cand gasesc cel
+	mai apropiat numar care este mai mic decat parametrul functiei. Daca numarul este negativ, fac adunari succesive care merg pana la cel mai mare numar mai mic decat valoarea din
+	antet.
+
+	Functia calcul_w calculeaza coeficientul ce va scadea influenta valorilor. Mai intai prelucrez suma de la numitor, iar apoi calculez w conform formulei definita in enuntul
+	temei.
+	Functia fscalare calculeaza factorul de scalare C folosind sugestiile din enuntul temei. Acesta va fi folosit in calculul valorii ce va fi adaugata pentru completarea datelor
+	de la cerinta 4.
+	In main se dau numarul de numarul de argumente si vectorul de siruri de caratere ce vor fi folosite la rularea corecta a temei.
+
+	In zona de declarare a variabilelor se declara variabile intregi precum contori, numarul de elemente din lista ce urmeaza a fi citita si varibila SW care se va modifica daca
+	argumentul dat va fi cel pentru bonus pentru a evita afisarea listei, varibile de tip double si lista in care urmeaza sa se adauge elementele ce urmeaza a fi prelucrate.
+
+	Se citeste numarul de elemente ce se vor adaugate in lista, iar apoi se citesc n elemente de tip timestamp - data care se insereaza in lista l prin functia definita addLast.
+
+	Structura repetitiva for asigura parcurgerea tuturor argumentelor date in linia de comanda la rularea executabilului creat dupa compilare. 
+
+	Daca argumentul este "--e1" atunci se excuta instructiunile pentru prima cerinta a temei. Se definesc subliste de cate k = 5 elemente, de aceea primele si ultimele 2 elemente
+	se ignora si se adauga in lista fara a fi verificate. Pornesc cu contorul de la 2 pana la n-2 pentru a asigura existenta sublistelor de cate k elemente. Pentru fiecare sublista
+	se initializeaza cu 0 suma elementelor, media, variabila in care se calculeaza suma diferentelor de patrate. sigma reprezinta deviatia standard a elementelor din lista. Daca 
+	elementul curent se afla in intervalul [medie - deviatie, medie + deviatie] atunci acesta va fi adaugat in noua lista si se va incrementa numarul de elemente. Se trece la 
+	urmatorul element din lista si se defineste o sublista in jucurl acestuia folosind elementele din lista initiala. La sfarsit de adauga si ultimele 2 elemente, iar nl creste cu
+	2. 
+	
+	Pentru argumentul "--e2" se executa instructiunile din cel de-al doilea if. Initializez doua liste auxiliare, madiana care va contine elementul din mijlocul sublistei sortate 
+	si sublist in care vor fi adaugate noi 5 valori care vor fi sortate crescator in functie de campul data. Dupa sortare se acceseaza elementul din mijlocul sublistei si se adauga
+	in lista noua. Lista finala va contine cu 4 elemente mai putin decat lista intiala, astfel incat se reinitializeaza numarul de elemente din lista prelucrata.
+	
+	Argumentul "--e3"  preprezinta optiunea pentru filtrarea datelor folosind media aritmetica. Aleg 2 varibile de tip double pentru suma si respectiv pentru media aritmetica 
+	calculata. average reprezinta lista in care vor fi adaugate noile elemente dupa filtrarea listei. Pornesc de la al treilea element al listei si formez o lista de 5 elemente in
+	jurul sau. Calculez media aritmetica a acestei subliste si o adaug in noua lista care se creeaza. Ca in cazul anterior, noua lista va avea cu 4 elemente mai putin decat lista
+	initiala.
+	
+	Daca argumentul dat la rulare este "--u" atunci are loc uniformizarea frecventei in timp a datelor. Lista q va contine valorile din lista initiala modificate conform cerintei.
+	Pornesc de al doilea element al listei pentru a asigura existenta elementului anterior. Daca diferenta acestora este in intervalul [0.1,1] secunde atunci valoarea actuala va fi
+	inlocuita cu media aritmetica a acestora atat in ceea ce priveste timestamp-ul, cat si in ceea ce priveste data efectiva. 
+	
+	Daca argumentul este "--c" atunci se doreste completarea datelor. Listele declarate right si left vor contine efectiv cate 3 elemente fiecare care vor ajuta la calcularea datei
+	cu care se va completa lista. Calculez w0, w1 si w2 folosind functia implementata calcul_w conform formulei din enunt. Pornesc de la al trilea element al listei pentru a 
+	asigura existenta listelor left si right. Variabila op numara peste cate elemeente se trece in lista initiala dupa completare. Pentru primul interval, aceasta are din start
+	valoarea 3. Daca diferenta dintre timestamp-ul curent si urmatorul este mai mare ca 1000, adica mai mare decat o secunda, atunci se adauga un sublistele left si right cele 3 
+	elemente dinainte, ultimul fiind cel curent, respectiv urmatoarele elemente din lista dupa cel curent. Variabila time ia valoarea timestamp-ului curent si cat timp diferenta 
+	din tre aceasta si timestamp-ului nodului urmator este mai mare ca 200 atunci se calculeaza factorul de scalare C cu jutorul functiei si f reprezentand valoarea datei cu care
+	se va completa lista. In lista se adauga valoarea lui time +200 si valoarea lui f. Dupa completarea primului interval, op va avea valoarea 0 si se va incrementa atunci cand se
+	adauga un element in lista gaps care se afla in lista initiala. La calcularea elementelor pentru completarea datelor, se retin ultimele 2 elemente adaugate si in functie de 
+	valoarea lui op, lista left va contine ori date din lista initiala, ori ultimele 2 date adaugate in cazul in care intervalele completate sunt consecutive, ori ultima data
+	adaugata daca intervalul care necesita completarea se va gasi peste 2 elemente din lista. Daca left si right au fost utilizate, la sfarsitul completarii se sterg complet pentru
+	a fi reinitializate cu noi valori. Ultimele 2 elemente se adauga la sfarsit deoarece ele nu vor fi verificate intrucat nu se mai poate asigura existenta listei right. Numarul 
+	de elemente din lista finala va fi calculat pe parcurs.
+
+	Daca primele 4 caractere ale argumentului sunt "--st" atunci se calculeaza numarul de elemente care se afla in intervale de lungime delta0. delta0 se extrage din argumentul dat
+	la rulare astfel: pornesc de la al 5-lea caracter, si formez un nou sir care sa contine toate caraterele pana la sfarsitul argumentului. Folosind functia atoi transform sirul 
+	de caractere intr-un intreg care reprezinta dimensiunea intervalului. Sortez lista crescator pentru a fi mai usor de prelucrat. Folsind functia find_integer se gaseste cel mai
+	 mare numar mai mic decat primul element al listei ordonate. 
+	Cat timp urmatorul element din lista este nenul, se efectueaza prelucrari asupra listei. Numarul de aparitii se initializeaza cu 0 pentru inceput. Cat timp campul data al 
+	elementului curent se afla in intervalul [gama, delta] se incrementeaza numarul de aparitii si se trece la urmatorul element. Daca numarul de aparitii este mai mare decat 0 se
+	afiseaza intervalul alaturi de numarul de aparitii. Gama ia valoarea lui delta, iar delta creste cu delta0 si se trece la intervalul urmator. In structura while se verifica 
+	separat pentru ultimul element al listei care nu se afla in acelasi interval cu penultimul element. 
+	Variabila SW declarata la inceput este folosita pentru a afisa rezultatul acestei prelucrarii fara a mai merge pe ramura care contine afisarea listei.
+	
